@@ -61,16 +61,12 @@
 <link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-my.png?v=6.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-my.png?v=6.2.0">
 
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
 
 
 
@@ -116,7 +112,7 @@
 <meta property="og:site_name" content="Chunk">
 <meta property="og:description" content="摘要 : 这篇文章主要介绍numpy库中对矩阵实现的Broadcasting机制的使用方法。broadcasting机制的使用往往代表着数据结构中以空间换时间思想的实现，使用这种方法，往往可以将循环替换为一次全并行的计算，或者说将一维数组的运算改为矩阵的运算。 1. 简单 broadcasting 引入 首先考虑这样一个简单的循环求和运算 \[\sum_{i=1}^{N}(x_i - 5)\]">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-16T09:50:11.384Z">
+<meta property="og:updated_time" content="2018-05-16T10:12:39.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="numpy中broadcast机制应用">
 <meta name="twitter:description" content="摘要 : 这篇文章主要介绍numpy库中对矩阵实现的Broadcasting机制的使用方法。broadcasting机制的使用往往代表着数据结构中以空间换时间思想的实现，使用这种方法，往往可以将循环替换为一次全并行的计算，或者说将一维数组的运算改为矩阵的运算。 1. 简单 broadcasting 引入 首先考虑这样一个简单的循环求和运算 \[\sum_{i=1}^{N}(x_i - 5)\]">
@@ -200,7 +196,7 @@
     </div>
     
       
-        <p class="site-subtitle">夏虫语冰</p>
+        <p class="site-subtitle">My backup for knowledge!</p>
       
     
   </div>
@@ -344,7 +340,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-16 17:50:11" itemprop="dateModified" datetime="2018-05-16T17:50:11+08:00">2018-05-16</time>
+                <time title="Modified: 2018-05-16 18:12:39" itemprop="dateModified" datetime="2018-05-16T18:12:39+08:00">2018-05-16</time>
               
             
           </span>
@@ -352,6 +348,18 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/numpy中broadcast机制应用/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="numpy中broadcast机制应用/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -379,7 +387,7 @@
       
         <p><strong>摘要</strong> : 这篇文章主要介绍numpy库中对矩阵实现的Broadcasting机制的使用方法。broadcasting机制的使用往往代表着数据结构中以空间换时间思想的实现，使用这种方法，往往可以将循环替换为一次全并行的计算，或者说将一维数组的运算改为矩阵的运算。</p>
 <h2 id="简单-broadcasting-引入">1. 简单 <strong><em>broadcasting</em></strong> 引入</h2>
-<p>首先考虑这样一个简单的循环求和运算 <span class="math display">\[\sum_{i=1}^{N}(x_i - 5)\]</span> 容易地，可以使用下面的程序完成计算： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_x</span><span class="params">(x)</span>:</span></span><br><span class="line">    sum_1 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(x)):</span><br><span class="line">        sum_1 += x[i] - <span class="number">5</span></span><br><span class="line">    <span class="keyword">return</span> sum_1</span><br></pre></td></tr></table></figure></p>
+<p>首先考虑这样一个简单的循环求和运算 <span class="math display">\[\sum_{i=1}^{N}(x_i - 5)\]</span> <a id="more"></a> 容易地，可以使用下面的程序完成计算： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_x</span><span class="params">(x)</span>:</span></span><br><span class="line">    sum_1 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(x)):</span><br><span class="line">        sum_1 += x[i] - <span class="number">5</span></span><br><span class="line">    <span class="keyword">return</span> sum_1</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，这时候的计算复杂度是<span class="math inline">\(O(N)\)</span>，使用broadcast机制，可以使用： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_new</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.sum(x - <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
 <p>两种方法的结果效果一致。这里考虑到numpy中sum函数的使用，计算复杂度没有降低。但是，此处值得借鉴的是，numpy没有拘泥于两个相减变量必须相同维度，方便的实现了上面的求和式，并且提高了代码的可读性。</p>
 <h2 id="broadcasting-进阶">2. <strong><em>broadcasting</em></strong> 进阶</h2>
@@ -458,6 +466,16 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -718,6 +736,31 @@
 
   
 
+  
+    <script id="dsq-count-scr" src="https://chunkcn.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = '/numpy中broadcast机制应用/';
+        this.page.identifier = 'numpy中broadcast机制应用/';
+        this.page.title = 'numpy中broadcast机制应用';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://chunkcn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
 
 
 	
@@ -729,10 +772,6 @@
   
 
 
-
-
-
-  
 
 
 
