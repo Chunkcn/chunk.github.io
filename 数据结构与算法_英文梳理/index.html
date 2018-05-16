@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn,en,default">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Date Structures &amp;amp; Algorithms Overview Abstract ：In this blog, I sum some key knowledge about DA&amp;amp;AL. Basic Concept  Interface and Implementation Attribute and Entity: an entity is that whi">
+<meta name="keywords" content="English">
+<meta property="og:type" content="article">
+<meta property="og:title" content="英文梳理数据结构与算法">
+<meta property="og:url" content="/数据结构与算法_英文梳理/index.html">
+<meta property="og:site_name" content="Chunk">
+<meta property="og:description" content="Date Structures &amp;amp; Algorithms Overview Abstract ：In this blog, I sum some key knowledge about DA&amp;amp;AL. Basic Concept  Interface and Implementation Attribute and Entity: an entity is that whi">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-05-12T19:10:07.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="英文梳理数据结构与算法">
+<meta name="twitter:description" content="Date Structures &amp;amp; Algorithms Overview Abstract ：In this blog, I sum some key knowledge about DA&amp;amp;AL. Basic Concept  Interface and Implementation Attribute and Entity: an entity is that whi">
+
+
+
+
+
+
+  <link rel="canonical" href="/数据结构与算法_英文梳理/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>英文梳理数据结构与算法 | Chunk</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">夏虫语冰</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/数据结构与算法_英文梳理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chunk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">英文梳理数据结构与算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-08 21:17:14" itemprop="dateCreated datePublished" datetime="2018-05-08T21:17:14+08:00">2018-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-13 03:10:07" itemprop="dateModified" datetime="2018-05-13T03:10:07+08:00">2018-05-13</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="date-structures-algorithms-overview">Date Structures &amp; Algorithms Overview</h1>
+<p><strong>Abstract</strong> ：In this blog, I sum some key knowledge about DA&amp;AL.</p>
+<h2 id="basic-concept">Basic Concept</h2>
+<ol type="1">
+<li>Interface and Implementation</li>
+<li>Attribute and Entity: an entity is that which contain attributes or properties which may be assigned values.</li>
+</ol>
+<h2 id="algorithms">Algorithms</h2>
+<ol type="1">
+<li>Five basic operations : <em>Search, Sort, Insert, Update, Delete</em></li>
+</ol>
+<h3 id="algorithm-analysis">Algorithm Analysis:</h3>
+<ol type="1">
+<li><p>A Prior Analysis: a theoretical analysis of an algorithm. Before implement , prediction.</p></li>
+<li><p>A Posterior Analysis: an empirical analysis of an algorithm. After implement.</p></li>
+</ol>
+<h4 id="algorithm-complexity">Algorithm Complexity:</h4>
+<ol type="1">
+<li>Time Factor: the number of key operations -&gt;Time Complexity</li>
+<li><p>Space Factor: maximum memory space required</p>
+<p>Fixed part and Variable part (depends on the size of the problem)</p></li>
+</ol>
+<h4 id="asymptotic-analysis">Asymptotic Analysis:</h4>
+<ol type="1">
+<li><p><span class="math inline">\(O\)</span> Notation: Upper bound of an algorithm</p></li>
+<li><p><span class="math inline">\(\Omega\)</span> Notation: Lower bound of an algorithm</p></li>
+<li><p><span class="math inline">\(\Theta\)</span> Notation: Both the lower bound and upper bound</p></li>
+</ol>
+<h4 id="basic-algorithms">Basic Algorithms:</h4>
+<ol type="1">
+<li><p><strong>Divide and Conquer</strong></p>
+<p>Merge Sort, Quick Sort, Binary Search, Strassen’s Matrix Multiplication, closest pair</p></li>
+<li><p><strong>Greedy Algorithm</strong></p>
+<p>The closest solution that seems to provide an optimum solution is chosen.</p></li>
+<li><p><strong>Dynamic Programming</strong></p>
+<p>An optimal solution can be achieved by using an optimum solution of smaller sub-problems.</p></li>
+</ol>
+<h2 id="data-structures">Data Structures</h2>
+<h4 id="data-definition">Data Definition:</h4>
+<p>Atomic, Traceable, Accurate, Clear and Concise</p>
+<ol type="1">
+<li><p>Built-in Data Type : Integers, Boolean, Floating, Character and Strings.</p></li>
+<li><p>Derived Data Type: List, Array, Stack, Queue</p></li>
+</ol>
+<h4 id="basic-operations">Basic Operations</h4>
+<p>Traversing, Searching, Insertion, Deletion, Sorting, Merging</p>
+<h4 id="arrays">1. Arrays:</h4>
+<p>Element and Index</p>
+<h4 id="linked-list">2. Linked List</h4>
+<p>A sequence of data structures, which are connected together via links.</p>
+<p>Link, Next, Linked-List (Header)</p>
+<ul>
+<li><p><strong>Double Linked List</strong>: Link, Next, Prev, Linked-List(first, last)</p></li>
+<li><p><strong>Circular Linked List</strong></p></li>
+</ul>
+<h4 id="stack">3. Stack</h4>
+<p>A stack is an Abstract Data Type (ADT). Allow operations at one end only. We can only access the top element of a stack. LIFO</p>
+<p>push, pop, peek(get top), isFull, isEmpty</p>
+<p><strong>Expression Parsing</strong></p>
+<ol type="1">
+<li><p>Infix Notation: operators are used in-between operands.</p></li>
+<li><p>Prefix Notation: operator is written ahead of operands.</p></li>
+<li><p>Postfix Notation: operator is written after the operands.</p></li>
+</ol>
+<p>Using stack implement the convert of infix to prefix, and calculate prefix with stack.</p>
+<h4 id="queue">4. Queue</h4>
+<p>One end is always used to insert data (enqueue) and the other is used to remove data (dequeue). FIFO</p>
+<h2 id="search">Search</h2>
+<h4 id="linear-search">1. Linear Search</h4>
+<h4 id="binary-search">2. Binary Search</h4>
+<h4 id="interpolation-search">3. Interpolation Search</h4>
+<p>Find a particular item by computing the probe position.</p>
+<p><span class="math inline">\(mid = Lo + \frac{Hi -Lo}{A[Hi]-A[Lo]}\times (X-A[Lo])\)</span></p>
+<h4 id="hash-table">4. Hash Table</h4>
+<p>Hashing is a technique to convert a range of key values into a range of indexes of an array. Hash Method: modulo,</p>
+<p><strong>Deal with conflict</strong>: Linear Probing, search the next empty location.</p>
+<p><strong>Search Operation</strong>: compute the hash code of the key and locate the element.</p>
+<h2 id="sort">Sort</h2>
+<ul>
+<li><p><strong>Bubble Sort</strong></p></li>
+<li><p><strong>Inserting Sort</strong></p></li>
+<li><p><strong>Selection Sort</strong></p></li>
+<li><p><strong>Merge Sort</strong></p></li>
+<li><p><strong>Shell Sort</strong></p></li>
+<li><p><strong>Quick Sort</strong></p></li>
+</ul>
+<h2 id="graph-data-structure">Graph Data Structure</h2>
+<p><strong>vertex(vertices), Edge, Adjacency, Path (a sequence of edges)</strong></p>
+<p><strong>Basic Operations</strong>: Add Vertex; Add Edge; Display Vertex;</p>
+<h4 id="depth-first-traversal">Depth First Traversal</h4>
+<p>use stack</p>
+<ol type="1">
+<li>visit the adjacent unvisited vertex. Mark it as visited. Display it and Push it in a stack.</li>
+<li>If no adjacent vertex is found, pop up a vertex from the stack. (It will pop up all the vertices from the stack, which do not have adjacent vertices.)</li>
+<li>repeat 1. and 2. until the stack is empty.</li>
+</ol>
+<h4 id="breadth-first-traversal">Breadth First Traversal</h4>
+<p>use queue</p>
+<ol type="1">
+<li>Visit the adjacent unvisited vertex. Mark it as visited. Display it and insert it in a queue.</li>
+<li>If no adjacent vertex is found, remove the first vertex from the queue.</li>
+<li>Repeat 1. and 2. until the queue is empty.</li>
+</ol>
+<h2 id="tree">Tree</h2>
+<p><strong>Binary Tree</strong>: A binary tree has the benefits of both an ordered array and a linked list as search it as quick as in a sorted array and insertion or deletion operation are as fast as in linked list.</p>
+<p><strong>Visiting</strong>: refers to checking the value of a node when control is on the node.</p>
+<p><strong>Key</strong>: represents a value of a node based on which a search operation is to be carried out of a node.</p>
+<p><strong>Traversing</strong>: means passing through nodes in a specific order.</p>
+<h4 id="binary-search-tree-representation">Binary Search Tree Representation</h4>
+<p>A node’s left child must have a value less than its parent’s value and the node’s right child mush have a value greater than its parent value.</p>
+<h5 id="bst-basic-operations">BST Basic Operations:</h5>
+<p>Insert, search, preorder traversal, inorder traversal. postorder traversal</p>
+<h5 id="in-order-traversal">In-order Traversal</h5>
+<p>the left subtree is visited first, then the root and later the right sub-tree.</p>
+<h5 id="pre-order-traversal">Pre-order Traversal</h5>
+<p>the root node is visited first, then the left subtree and finally the right subtree.</p>
+<h5 id="post-order-traversal">Post-order Traversal</h5>
+<p>the root node is visited last. First we traverse the left subtree, then the right subtree and finally the root node.</p>
+<h4 id="avl-tree-height-balancing-binary-search-tree">AVL Tree: height balancing binary search tree</h4>
+<h5 id="balance-factor">Balance Factor:</h5>
+<p>the difference between the height of the left and the right sub-trees.</p>
+<h5 id="avl-rotations">AVL Rotations:</h5>
+<p>the aim is converting three elements to a 2-level sub-BST</p>
+<ul>
+<li>Left Rotation</li>
+<li>Right Rotation</li>
+<li>Left-Right Rotation</li>
+<li>Right-Left Rotation</li>
+</ul>
+<h4 id="spanning-tree">Spanning Tree</h4>
+<p>all the vertices covered with minimum possible number of edges.</p>
+<h4 id="minimum-spanning-tree-mst">Minimum Spanning Tree (MST)</h4>
+<h5 id="kruskals-algorithm">Kruskal’s Algorithm</h5>
+<ol type="1">
+<li>remove all loops and parallel edges from the given graph</li>
+<li>sort all edges in their increasing order of weight</li>
+<li>add the edge which has the least weightage (avoid loop)</li>
+</ol>
+<h5 id="prims-algorithm">Prim’s Algorithm</h5>
+<ol type="1">
+<li>remove all loops and parallel edges</li>
+<li>choose any arbitrary node as root node</li>
+<li>check outgoing edges and select the one with less cost</li>
+</ol>
+<h4 id="heap-data-structures">Heap Data Structures</h4>
+<ul>
+<li><p>Max Heap: the value of parent is great than that of child.</p></li>
+<li><p>Min Heap</p></li>
+</ul>
+<h3 id="recursion-basics">Recursion Basics</h3>
+<h5 id="properties-1.-base-criteria-2.-progressive-approach.">Properties: 1. Base criteria; 2. progressive approach.</h5>
+<h5 id="tower-of-hanoi">Tower of Hanoi</h5>
+<p><a href="https://www.tutorialspoint.com/data_structures_algorithms/algorithms_basics.htm" target="_blank" rel="noopener">Referance</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/English/" rel="tag"># English</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/numpy中broadcast机制应用/" rel="next" title="numpy中broadcast机制应用">
+                <i class="fa fa-chevron-left"></i> numpy中broadcast机制应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Chunk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chunkcn@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#date-structures-algorithms-overview"><span class="nav-number">1.</span> <span class="nav-text">Date Structures &amp; Algorithms Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-concept"><span class="nav-number">1.1.</span> <span class="nav-text">Basic Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithms"><span class="nav-number">1.2.</span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-analysis"><span class="nav-number">1.2.1.</span> <span class="nav-text">Algorithm Analysis:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#algorithm-complexity"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Algorithm Complexity:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asymptotic-analysis"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Asymptotic Analysis:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-algorithms"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Basic Algorithms:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-structures"><span class="nav-number">1.3.</span> <span class="nav-text">Data Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-definition"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Data Definition:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operations"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">Basic Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#arrays"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">1. Arrays:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linked-list"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">2. Linked List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stack"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">3. Stack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue"><span class="nav-number">1.3.0.6.</span> <span class="nav-text">4. Queue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#search"><span class="nav-number">1.4.</span> <span class="nav-text">Search</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#linear-search"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">1. Linear Search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#binary-search"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">2. Binary Search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#interpolation-search"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">3. Interpolation Search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash-table"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">4. Hash Table</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-number">1.5.</span> <span class="nav-text">Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#graph-data-structure"><span class="nav-number">1.6.</span> <span class="nav-text">Graph Data Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#depth-first-traversal"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Depth First Traversal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#breadth-first-traversal"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">Breadth First Traversal</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree"><span class="nav-number">1.7.</span> <span class="nav-text">Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#binary-search-tree-representation"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">Binary Search Tree Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bst-basic-operations"><span class="nav-number">1.7.0.1.1.</span> <span class="nav-text">BST Basic Operations:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#in-order-traversal"><span class="nav-number">1.7.0.1.2.</span> <span class="nav-text">In-order Traversal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pre-order-traversal"><span class="nav-number">1.7.0.1.3.</span> <span class="nav-text">Pre-order Traversal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#post-order-traversal"><span class="nav-number">1.7.0.1.4.</span> <span class="nav-text">Post-order Traversal</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#avl-tree-height-balancing-binary-search-tree"><span class="nav-number">1.7.0.2.</span> <span class="nav-text">AVL Tree: height balancing binary search tree</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#balance-factor"><span class="nav-number">1.7.0.2.1.</span> <span class="nav-text">Balance Factor:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#avl-rotations"><span class="nav-number">1.7.0.2.2.</span> <span class="nav-text">AVL Rotations:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spanning-tree"><span class="nav-number">1.7.0.3.</span> <span class="nav-text">Spanning Tree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#minimum-spanning-tree-mst"><span class="nav-number">1.7.0.4.</span> <span class="nav-text">Minimum Spanning Tree (MST)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#kruskals-algorithm"><span class="nav-number">1.7.0.4.1.</span> <span class="nav-text">Kruskal’s Algorithm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#prims-algorithm"><span class="nav-number">1.7.0.4.2.</span> <span class="nav-text">Prim’s Algorithm</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#heap-data-structures"><span class="nav-number">1.7.0.5.</span> <span class="nav-text">Heap Data Structures</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#recursion-basics"><span class="nav-number">1.7.1.</span> <span class="nav-text">Recursion Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#properties-1.-base-criteria-2.-progressive-approach."><span class="nav-number">1.7.1.0.1.</span> <span class="nav-text">Properties: 1. Base criteria; 2. progressive approach.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tower-of-hanoi"><span class="nav-number">1.7.1.0.2.</span> <span class="nav-text">Tower of Hanoi</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunk</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
